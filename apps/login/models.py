@@ -8,20 +8,20 @@ import bcrypt, re
 class UserManager(models.Manager):
     def validate(self, postData):
         errors = []     # array of error messages
-        if postData["first_name"] == "First Name" or len(postData["first_name"]) == 0:
+        if len(postData["first_name"]) == 0:
             # if first name has not been entered
             errors.append("Please enter a first name.")
         elif len(postData["first_name"]) < 2:
             errors.append("First name must be between 2-45 characters.")
         elif not re.search(r'^[A-Za-z]+$', postData["first_name"]):
             errors.append("First name must be letters only.")
-        if postData["last_name"] == "Last Name" or len(postData["last_name"]) == 0:
+        if len(postData["last_name"]) == 0:
             errors.append("Please enter a last name.")
         elif len(postData["last_name"]) < 2:
             errors.append("Last name must be between 2-45 characters.")
         elif not re.search(r'^[A-Za-z]+$', postData["last_name"]):
             errors.append("Last name must be letters only.")
-        if postData["email"] == "example@email.com" or len(postData["email"]) == 0:
+        if len(postData["email"]) == 0:
             errors.append("Please enter an email address.")
         elif not re.search(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+.[a-zA-Z]+$', postData["email"]):
             errors.append("Invalid email address.")
